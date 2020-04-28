@@ -6,8 +6,8 @@ ARFLAG = -rcs
 
 USR_INC = /home/joe/worksource/toolchain_sdk_j6entry/sysroots/armv7ahf-neon-linux-gnueabi/usr
 
-#MODULE_SELECT=drm-glesv2
-MODULE_SELECT=wayland-glesv2
+MODULE_SELECT=drm-glesv2
+#MODULE_SELECT=wayland-glesv2
 
 CFLAGS = -g -O0 -march=armv7-a -marm -mfpu=neon -mfloat-abi=hard
 CLIBS = -L./libmatrix/ -lmatrix -L./libpng -lpng -L./zlib -lzlib -L./glad -lglad -L./libjpeg-turbo -ljpeg-turbo -lm -ldl -lrt -ljpeg
@@ -15,7 +15,7 @@ INCLUDE_DIRS = -I$(USR_INC)/include/ -I./include -I./glad/include -I./module_sel
 SUBDIRS = ./libmatrix ./zlib ./libpng ./glad ./libjpeg-turbo 
 
 TARGET = glmark2_arm
-SOURCES = $(wildcard ./*.cpp ./scene-terrain/*.cpp)
+SOURCES = $(wildcard ./*.cpp ./scene-terrain/*.cpp ./scene-ideas/*.cpp)
 
 ifeq ($(MODULE_SELECT), drm-gl)
 	SOURCES += ./module_select/native-state-drm.cpp
@@ -54,21 +54,12 @@ export CC CXX CFLAGS AR ARFLAG MODULE_SELECT
 	
 CPP_OBJECTS = $(patsubst %.cpp,%.o,$(SOURCES))
 
-CC_SOURCES = $(wildcard ./scene-ideas/*.cc)
-CC_OBJECTS += $(patsubst %.cc,%.o,$(CC_SOURCES))
-
 OBJECTS = $(CPP_OBJECTS)
-OBJECTS += $(CC_OBJECTS)
 
 $(TARGET) : $(OBJECTS)
 	$(CXX) $^ -o $@ $(CLIBS)
 
-$(OBJECTS) : $(SUBDIRS)
-	
-$(CPP_OBJECTS) : %.o : %.cpp
-	$(CXX) -c $(CFLAGS) $< -o $@ $(INCLUDE_DIRS)
-
-$(CC_OBJECTS) : %.o : %.cc
+$(OBJECTS) : %.o : %.cpp $(SUBDIRS)
 	$(CXX) -c $(CFLAGS) $< -o $@ $(INCLUDE_DIRS)
 
 $(SUBDIRS):ECHO
