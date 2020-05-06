@@ -1,14 +1,9 @@
 # glmark2_arm
 移植glmark2跑分工具到arm板上。
 
-(1) cd src/
-
-(2) modify Makefile, change the CROSS_COMPILER to your cross compiler and your USR_INC( usr/include) dir in your sysroot. 
-
-(3) modify MODULE_SELECT, default is drm-glesv2 module, just this module can work now, if you can run wayland-glesv2 module on
-
-    your arm board, please tell me.
-
+(1) cd src/ 进入src目录
+(2) 修改Makefile, 修改交叉编译工具gcc的环境变量“CROSS_COMPILER”，修改USR_INC为你的sysroot下的usr/include。
+(3) 修改模式选择变量“MODULE_SELECT”，默认的跑分模式是drm-glesv2模式，现在wayland-glesv2模式跑起来有问题，如果你能将wayland-glesv2模式跑起来请告诉我，一起学习。
 (4) make
 
 运行效果如下：
