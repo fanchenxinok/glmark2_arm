@@ -4,3 +4,4 @@ build/
 SI/
 *.o
 *.a
+src/glmark2_arm
