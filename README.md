@@ -1,11 +1,11 @@
 # glmark2_arm
-移植glmark2跑分工具到arm板上。
+glmark2 is GPU test tool run on Windows or Linux x86 platform, so i create this repository for ARM platform GPU test base on glmark2.
 
-(1) cd src/ 进入src目录
-(2) 修改Makefile, 修改交叉编译工具gcc的环境变量“CROSS_COMPILER”，修改USR_INC为你的sysroot下的usr/include。
-(3) 修改模式选择变量“MODULE_SELECT”，默认的跑分模式是drm-glesv2模式，现在wayland-glesv2模式跑起来有问题，如果你能将wayland-glesv2模式跑起来请告诉我，一起学习。
+# how to cross-compile glmark2_arm
+(1) cd src/ 
+(2) modify Makefile, then modify cross-comile tool gcc's env setting “CROSS_COMPILER”，modify USR_INC as your system root/usr/include。
+(3) modify module select setting “MODULE_SELECT”, default module is "drm-glesv2",  now the "wayland-glesv2" module can not run normally yet, if you can run "wayland-glesv2" module normally, please tell me, and commit to this repository.
 (4) make
-
-运行效果如下：
+# run on my ARM board result as following：
 ![result1](https://github.com/fanchenxinok/glmark2_arm/blob/master/doc/result1.jpg)
 ![result2](https://github.com/fanchenxinok/glmark2_arm/blob/master/doc/result2.jpg)
