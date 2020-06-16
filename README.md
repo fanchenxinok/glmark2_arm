@@ -1,5 +1,6 @@
 # glmark2_arm
-glmark2 is GPU test tool run on Windows or Linux x86 platform, so i create this repository for ARM platform GPU test base on glmark2.
+glmark2 is GPU test tool run on Windows or Linux x86 platform, so i create this repository for ARM platform GPU test base on glmark2.  
+https://github.com/glmark2/glmark2
 
 # how to cross-compile glmark2_arm
 (1) cd src/  
